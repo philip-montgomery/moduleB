@@ -13,34 +13,21 @@ resource "google_storage_bucket" "bucketB" {
   name     = random_id.bucketid.hex
 }
 
-resource "google_compute_instance" "bastion_host" {
-  project      = var.project
-  name         = var.instance_name
-  machine_type = var.machine_type
-  zone         = var.zone
-  depends_on    = ["null_resource.dependency_getter"]
-
-  tags = [var.tag]
+resource "google_compute_instance" "vm_instance" {
+  name         = "terraform-instance"
+  machine_type = "f1-micro"
 
   boot_disk {
     initialize_params {
-      image = var.source_image
+      image = "debian-cloud/debian-9"
     }
   }
 
   network_interface {
-    subnetwork = var.subnetwork
-
-    // If var.static_ip is set use that IP, otherwise this will generate an ephemeral IP
+    # A default network is created for all GCP projects
+    network       = "default"
     access_config {
-      nat_ip = var.static_ip
     }
-  }
-
-  metadata_startup_script = var.startup_script
-
-  metadata = {
-    enable-oslogin = "TRUE"
   }
 }
 

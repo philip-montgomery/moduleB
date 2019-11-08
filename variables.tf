@@ -8,11 +8,6 @@ variable "instance_name" {
   type        = string
 }
 
-variable "subnetwork" {
-  description = "A reference (self_link) to the subnetwork to place the bastion host in"
-  type        = string
-}
-
 variable "project" {
   description = "The project to create the bastion host in. Must match the subnetwork project."
   type        = string
