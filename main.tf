@@ -10,7 +10,7 @@ resource "random_id" "bucketBid" {
 }
 
 resource "google_storage_bucket" "bucketB" {
-  name     = random_id.bucketBid.hex
+  name     = "${random_id.bucketBid.hex}-foo"
 }
 
 resource "google_compute_instance" "vm_instance" {
