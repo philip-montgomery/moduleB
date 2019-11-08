@@ -6,11 +6,11 @@ resource "null_resource" "dependency_getter" {
 
 resource "random_id" "bucketBid" {
   byte_length = 4
-  prefix      = "busketB-"
+  prefix      = "busketb-"
 }
 
 resource "google_storage_bucket" "bucketB" {
-  name     = "${random_id.bucketBid.hex}-foo"
+  name     = random_id.bucketBid.hex
 }
 
 resource "google_compute_instance" "vm_instance" {
