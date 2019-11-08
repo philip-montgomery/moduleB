@@ -14,7 +14,7 @@ resource "google_storage_bucket" "bucketB" {
 }
 
 resource "google_compute_instance" "vm_instance" {
-  name         = "terraform-instance"
+  name         = "terraform-instanceB"
   machine_type = "f1-micro"
 
   boot_disk {
